@@ -1,0 +1,13 @@
+{
+  "name": "aklebe-laravel/central-ui-theme",
+  "type": "laravel-theme",
+  "description": "Admin or Supervisor Theme",
+  "authors": [
+    {
+      "name": "Andreas Klebe",
+      "email": "a.klebe.work@gmail.com"
+    }
+  ],
+  "require": {
+  }
+}

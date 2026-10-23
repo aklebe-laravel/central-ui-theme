@@ -1,0 +1,49 @@
+{
+  "assets/css/app.css": {
+    "file": "assets/app-BwMnyJMT.css",
+    "src": "assets/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "assets/images/frank-krank.gif": {
+    "file": "assets/frank-krank-CY1Mgg0G.gif",
+    "src": "assets/images/frank-krank.gif"
+  },
+  "assets/images/frank-krank2.gif": {
+    "file": "assets/frank-krank2-CoIClf64.gif",
+    "src": "assets/images/frank-krank2.gif"
+  },
+  "assets/images/generic-avatar.jpg": {
+    "file": "assets/generic-avatar-C2PA170b.jpg",
+    "src": "assets/images/generic-avatar.jpg"
+  },
+  "assets/images/no_image_available.jpg": {
+    "file": "assets/no_image_available-Cvya9Jub.jpg",
+    "src": "assets/images/no_image_available.jpg"
+  },
+  "assets/images/proxtop-favico.png": {
+    "file": "assets/proxtop-favico-Lg_dlgz6.png",
+    "src": "assets/images/proxtop-favico.png"
+  },
+  "assets/images/proxtop-logo.png": {
+    "file": "assets/proxtop-logo-C1Bi0YR-.png",
+    "src": "assets/images/proxtop-logo.png"
+  },
+  "assets/images/switch-on-off-2-dark.png": {
+    "file": "assets/switch-on-off-2-dark-CJJnlvrg.png",
+    "src": "assets/images/switch-on-off-2-dark.png"
+  },
+  "assets/images/switch-on-off-2.png": {
+    "file": "assets/switch-on-off-2-Ca9izkf1.png",
+    "src": "assets/images/switch-on-off-2.png"
+  },
+  "assets/js/app.js": {
+    "file": "assets/app-DyH1NhJE.js",
+    "name": "app",
+    "src": "assets/js/app.js",
+    "isEntry": true
+  }
+}
