@@ -1,4 +1,4 @@
-## Central UI Theme
+# Central UI Theme
 
 A theme for the [Mercy Scaffold](https://github.com/aklebe-laravel/mercy-scaffold)
 (based on [alizharb/laravel-themer](https://github.com/alizharb/laravel-themer)).
@@ -36,7 +36,7 @@ sail artisan deploy-env:build-mercy-assets
 npm ci && npm run build
 ```
 
-The production build (`php build.php create`) runs these steps itself.
+The production build (`./mercy build`) runs these steps itself.
 Static files like images are published by laravel-themer to `public/themes/central-ui`.
 
 ## License
