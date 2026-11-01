@@ -1,9 +1,3 @@
-@php
-    use Modules\SystemBase\app\Services\ModuleService;
-
-    $publicPortal = config('website-base.module_website_public', false);
-
-@endphp
 <x-auth-card>
     @include('auth.inc.header')
 
@@ -15,5 +9,4 @@
                 wire:key="login-form"
         />
     </div>
-
 </x-auth-card>

@@ -1,29 +1,22 @@
 @php
+    use Illuminate\Support\Facades\App;
+    use Illuminate\Support\Facades\Auth;
 
-    use Modules\SystemBase\app\Services\ThemeService;
-    use Modules\WebsiteBase\app\Services\WebsiteService;
-
-    /** @var WebsiteService $websiteService */
-    $websiteService = app(WebsiteService::class);
-
-    $isStoreVisibleForUser = $websiteService->isStoreVisibleForUser();
-
-    $_currentLocale = \Illuminate\Support\Facades\App::currentLocale();
-    if ($_currentLocale === 'en') {
-        $_trans = json_encode(app('system_base')->getTranslations());
-    } else {
-        $_trans = json_encode(app('system_base')->getTranslations(['en', $_currentLocale]));
-    }
+    $_currentLocale = App::currentLocale();
+    // English is always included as fallback for keys missing in the current locale
+    $_trans = json_encode($_currentLocale === 'en'
+        ? app('system_base')->getTranslations()
+        : app('system_base')->getTranslations(['en', $_currentLocale]));
 @endphp<!DOCTYPE html>
-<html x-data="tallstackui_darkTheme()" x-bind:class="{ 'dark': darkTheme }">
+<html lang="{{ str_replace('_', '-', $_currentLocale) }}" x-data="tallstackui_darkTheme()" x-bind:class="{ 'dark': darkTheme }">
     <head>
         <script>
-            // Wenn der User neu ist (Privates Fenster), tricksen wir TallStackUI aus:
+            // Dark is the default: seed TallStackUI's key for new visitors (e.g. private windows)
             if (localStorage.getItem('dark-theme') === null) {
                 localStorage.setItem('dark-theme', 'true');
             }
 
-            // Sofortige Klasse setzen für 0% Flackern
+            // Set the class before first paint to avoid a light flash
             if (localStorage.getItem('dark-theme') === 'true') {
                 document.documentElement.classList.add('dark');
             }
@@ -33,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
-        <link rel="icon" href="{{ theme_asset('images/proxtop-favico.png') }}">
+        <link rel="icon" href="{{ theme_asset('images/proxtop_favicon.png') }}">
         <style>
             [x-cloak] {
                 display: none !important;
@@ -61,13 +54,12 @@
             var translations = {!! $_trans !!};
             var currentLocale = '{{ $_currentLocale }}';
             var messageBoxConfig = {!! json_encode(config('message-boxes')) !!};
-            var currentUser = {!! \Illuminate\Support\Facades\Auth::check() ? json_encode(app('website_base_settings')->currentUser()) : '{}' !!};
+            var currentUser = {!! Auth::check() ? json_encode(app('website_base_settings')->currentUser()) : '{}' !!};
         </script>
 
-        <!-- 2. TallStackUI Skript (MUSS direkt vor Vite stehen) -->
+        {{-- TallStackUI script must be loaded right before the Vite assets --}}
         <tallstackui:script/>
 
-        <!-- 3. Vite Assets -->
         @vite(['resources/css/app.css', 'resources/js/app.js'], 'build')
     </head>
 
@@ -79,7 +71,6 @@
         >
             @include('components.message-box')
 
-            <!-- Page Heading -->
             @if (isset($header))
                 <header class="my-4 flex bg-surface-100">
                     <div class="py-2 px-4 flex-1">
@@ -93,7 +84,6 @@
                 </header>
             @endif
 
-            <!-- Page Content -->
             <main>
                 @if($randomQuote ?? null)
                     <div class="my-2 messages">
@@ -105,7 +95,6 @@
 
                 {{ $slot }}
             </main>
-
 
             @include('inc.footer')
         </div>

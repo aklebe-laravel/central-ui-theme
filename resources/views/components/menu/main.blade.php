@@ -1,14 +1,15 @@
 @php
-    use Modules\SystemBase\app\Services\ThemeService;
     use Modules\WebsiteBase\app\View\Components\Menu\Main;
+
     /**
-     * Final Recursive Navigation with Mobile Icon Fix.
-     * Logic: Uses Blade::render to ensure <x-icon> is processed inside the PHP closure.
+     * Main navigation: desktop bar with nested dropdowns (lg and up) and a mobile slide-over.
+     * Nested levels are rendered by the partials in components/menu/partials.
+     *
+     * @var array $navTree
      */
 @endphp
 
 <div x-data="{ mobileOpen: false }" class="relative antialiased">
-    <!-- NAVBAR -->
     <nav class="sticky top-0 z-40 transition-colors">
         <div class="w-full mx-auto px-4 h-16 flex items-center justify-between">
 
@@ -16,7 +17,7 @@
                 <div class="my-auto w-max sm:w-70">
                     <div class="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-2 text-left">
                         <div class="h-16 w-16 flex-none">
-                            <img src="{{ theme_asset('images/' . 'proxtop-logo.png') }}"
+                            <img src="{{ theme_asset('images/proxtop_logo.webp') }}"
                                  alt="Logo"
                                  class="h-full w-full object-contain"/>
                         </div>
@@ -30,12 +31,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </a>
 
-            {{-- DESKTOP VERSION --}}
-            {{-- desktop-nav.blade.php --}}
+            {{-- Desktop --}}
             <div class="hidden lg:flex items-center gap-6">
                 @foreach($navTree as $navItem)
                     @php
@@ -100,8 +98,7 @@
                 @endforeach
             </div>
 
-
-            <!-- MOBILE TRIGGER -->
+            {{-- Mobile trigger --}}
             <div class="lg:hidden">
                 <button type="button" @click="mobileOpen = true" class="p-2 rounded-lg text-surface-600 hover:bg-surface-100 transition focus:outline-none">
                     <x-lucide-menu class="w-6 h-6"/>
@@ -110,7 +107,7 @@
         </div>
     </nav>
 
-    <!-- MOBILE SLIDE-OVER -->
+    {{-- Mobile slide-over --}}
     <div x-show="mobileOpen" x-cloak class="fixed inset-0 z-100">
         <div x-show="mobileOpen" x-transition.opacity @click="mobileOpen = false" class="absolute inset-0 bg-surface-950/60 backdrop-blur-md"></div>
         <div x-show="mobileOpen"

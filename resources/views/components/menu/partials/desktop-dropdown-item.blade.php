@@ -49,12 +49,13 @@
                     />
                 @endif
             @else
-                <!-- SEMANTIC SEPARATOR -->
+                {{-- Entry without title: separator --}}
                 <div class="my-2 h-px w-full bg-surface-800/20" aria-hidden="true"></div>
             @endif
         </x-menu-link>
 
         @if($hasChildren)
+            {{-- Horizontal bridge for the side flyout --}}
             <div x-show="open" class="absolute w-3 h-full -right-3 top-0 bg-transparent z-40"></div>
 
             <div x-show="open"

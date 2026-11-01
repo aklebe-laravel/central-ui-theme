@@ -1,20 +1,11 @@
-@php
-    use Modules\CentralUi\app\Models\ProxtopObserveServerItem;
-
-    //$paginationData = [
-    //    'maxPages'    => 10,
-    //    'itemsPerPage' => 3,
-    //];
-@endphp
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-semibold text-xl leading-tight text-danger">
+        <h1 class="font-semibold text-xl leading-tight">
             {{ config('app.name') }} {{ config('app.version') }}
         </h1>
     </x-slot>
 
-    <div class="">
+    <div>
         <livewire:central-ui::vm-desktop wire:key="Home-Desktop-Vm-Status"/>
     </div>
 </x-app-layout>
-
